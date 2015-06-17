@@ -4,7 +4,7 @@ Symbolication project enables `Symbolicate` Xcode plugin. This plugin is availab
 * Symbolicate Plugin is used to symbolicate crashes. If `dSYM file` and  `crash file` is available, the crash can be symbolicated using the Plugin. 
 * 1.0 (0.1)
 
-![Product Menu][product_menu]
+![Product Menu](https://raw.githubusercontent.com/MaheshRS/symbolication-plugin/master/screenshots/product_menu.png "Produce Menu")
 
 ### How do I get set up? ##
 
@@ -38,7 +38,7 @@ Use the `Symbolicate` tab to symbolicate the crash log.
 
 Note: Additionally you can save the crash file by clicking at the down arrow at the bottom left of the screen.
 
-![Symbolicate][symbolicate]
+![Symbolicate](https://raw.githubusercontent.com/MaheshRS/symbolication-plugin/master/screenshots/Symbolicate_screen.png "Symbolicate Section")
 
 #### Checking the application details
 Used the `Details` tab to get the build information.
@@ -46,7 +46,7 @@ Used the `Details` tab to get the build information.
 * Select the application executable file (Unix executable file) available inside the application.app bundle (application.app/application).
 * The details of the application like the build UUID, the build architecture is displayed.
 
-![Details][details]
+![Details](https://raw.githubusercontent.com/MaheshRS/symbolication-plugin/master/screenshots/Details_screen.png "Details Section")
 
 #### Symbolicating memory references available in the crash file 
 Used the `Mmeory` tab to symbolicate memory references
@@ -56,8 +56,7 @@ Used the `Mmeory` tab to symbolicate memory references
 * Select the architecture (This can be found using the above 'Details' section).
 * Select Symbolicate. The Plugin displayes the symbolicated memory reference.
 
-![Memory][memory]
+![Memory](https://raw.githubusercontent.com/MaheshRS/symbolication-plugin/master/screenshots/Memory_screen.png "Memory Section")
 
 ### Contribution guidelines ##
 Wanna contribute? Great! Fork the repository and send pull request's to the development branch.
-
