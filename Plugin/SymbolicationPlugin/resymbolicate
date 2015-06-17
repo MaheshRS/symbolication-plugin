@@ -1,0 +1,72 @@
+#!/bin/sh
+shopt -s expand_aliases
+
+crash_file_path="$1" #the first argument of the command: This is the *.crash file path 
+debug_symbols_path="$2" #the second argument of the command: This is the *.app.dSYM debug symbol file path
+destination_file_path="$3" #the third argument of the command: This is the destination file path.
+xcode_developer_directory_path=$(xcode-select -p)
+symbolicateCrashPath=$symbolicatecrash
+symbolicatecrash_root_path=${xcode_developer_directory_path::${#xcode_developer_directory_path}-18}
+
+function startCrashSymbolication {
+	if [ -n "$destination_file_path" ]; then
+		$symbolicateCrashPath "$crash_file_path" "$debug_symbols_path" > $destination_file_path
+	else	
+		$symbolicateCrashPath "$crash_file_path" "$debug_symbols_path" >&2
+	fi
+	exit 0
+}
+
+function symbolicateCrash {
+	if [ -n "$symbolicateCrashPath" ]; then
+		# here we have found the path to symbolicatecrash.pl script
+		alias symbolicatecrash="$symbolicateCrashPath"  # set path to the symbolicatecrash.pl script
+		startCrashSymbolication # start symbolicating
+	else
+		# get the path to symbolicatecrash.pl script
+		symbolicateCrashPath=$(find $symbolicatecrash_root_path -name symbolicatecrash -type f)
+		alias symbolicatecrash="$symbolicateCrashPath" # set path to the symbolicatecrash.pl script
+		startCrashSymbolication # start symbolicating
+	fi
+}
+
+function prepareToResymbolicate {
+	if [ -n "$xcode_developer_directory_path" ]; then
+		export DEVELOPER_DIR=$xcode_developer_directory_path
+		symbolicateCrash;
+	else
+		echo "ERROR: Xcode Command line tools are not available"
+		exit 1 # command line tools is necessary 
+	fi
+}
+
+function setupActiveDeveloperDirectory {
+	if [ -n "$DEVELOPER_DIR" ]; then
+		symbolicateCrash # prepare variables to symbolicate
+	else
+		#developer directory not found. Search for the developer directory and export to $DEVELOPER_DIR environment variable.
+		prepareToResymbolicate # prepare variables to symbolicate
+	fi
+}
+
+#check if any options are available for eg
+while getopts ":u:" opt; do
+	case  $opt in
+		u )
+			# we have a valid option with an argument, display the version
+			dwarfdump -u $OPTARG
+			exit
+			;;
+		*)
+			echo "error: Invalid option -$OPTARG";
+			exit 1;
+	esac
+done
+
+if [ -z "$1" ]; then
+	echo "ERROR: Path to .crash file is missing" >&2
+elif [ -z "$2" ]; then
+	echo "ERROR: Path to .app.Dsym file is missing" >&2
+else
+	setupActiveDeveloperDirectory
+fi
