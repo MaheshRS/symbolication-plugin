@@ -4,6 +4,7 @@ Symbolication project enables `Symbolicate` Xcode plugin. This plugin is availab
 * Symbolicate Plugin is used to symbolicate crashes. If `dSYM file` and  `crash file` is available, the crash can be symbolicated using the Plugin. 
 * 1.0 (0.1)
 
+![Product Menu][product_menu]
 
 ### How do I get set up? ##
 
@@ -37,11 +38,15 @@ Use the `Symbolicate` tab to symbolicate the crash log.
 
 Note: Additionally you can save the crash file by clicking at the down arrow at the bottom left of the screen.
 
+![Symbolicate][symbolicate]
+
 #### Checking the application details
 Used the `Details` tab to get the build information.
 
 * Select the application executable file (Unix executable file) available inside the application.app bundle (application.app/application).
 * The details of the application like the build UUID, the build architecture is displayed.
+
+![Details][details]
 
 #### Symbolicating memory references available in the crash file 
 Used the `Mmeory` tab to symbolicate memory references
@@ -50,6 +55,8 @@ Used the `Mmeory` tab to symbolicate memory references
 * List down the memory addresses a single space saperated list.
 * Select the architecture (This can be found using the above 'Details' section).
 * Select Symbolicate. The Plugin displayes the symbolicated memory reference.
+
+![Memory][memory]
 
 ### Contribution guidelines ##
 Wanna contribute? Great! Fork the repository and send pull request's to the development branch.
