@@ -36,13 +36,11 @@
 
 @implementation SymbolicationPlugin
 
-+ (instancetype)sharedPlugin
-{
++ (instancetype)sharedPlugin {
     return sharedPlugin;
 }
 
-- (id)initWithBundle:(NSBundle *)plugin
-{
+- (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         // reference to plugin's bundle, for resource access
         self.bundle = plugin;
@@ -54,26 +52,24 @@
     return self;
 }
 
-- (void)didApplicationFinishLaunchingNotification:(NSNotification*)noti
-{
+- (void)didApplicationFinishLaunchingNotification:(NSNotification*)noti {
     //removeObserver
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
     // Create menu items, initialize UI, etc.
-    // Sample Menu Item:
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+        
         NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Symbolicate" action:@selector(symbolicateMenuAction) keyEquivalent:@""];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
     }
 }
 
-// Sample Action, for menu item:
 - (void)symbolicateMenuAction
 {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.mahesh.SymbolicationPlugin"];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:kBundleIdentifier];
     if([bundle pathForResource:@"RootController" ofType:@"nib"] == nil) {
         self.rootController = nil;
         self.mainWindowController = nil;
@@ -99,8 +95,7 @@
     }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

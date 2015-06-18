@@ -96,7 +96,8 @@
             
             if (task.terminationStatus == 0) {
                 completion(output, nil);
-            } else {
+            }
+            else {
                 NSString* reason = [NSString stringWithFormat:@"Task exited with status %d", task.terminationStatus];
                 completion(output, [NSError errorWithDomain:reason code:666 userInfo:@{ NSLocalizedDescriptionKey: reason }]);
             }

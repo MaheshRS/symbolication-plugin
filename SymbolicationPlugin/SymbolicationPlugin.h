@@ -31,13 +31,14 @@
 @class SymbolicationPlugin;
 
 static SymbolicationPlugin *sharedPlugin;
+NSString * const kBundleIdentifier = @"com.mahesh.SymbolicationPlugin";
 
 @interface SymbolicationPlugin : NSObject
 
-+ (instancetype)sharedPlugin;
-- (id)initWithBundle:(NSBundle *)plugin;
-
 @property (nonatomic, strong, readonly) NSBundle* bundle;
 @property (nonatomic, strong) MainWindow* mainWindowController;
+
++ (instancetype)sharedPlugin;
+- (id)initWithBundle:(NSBundle *)plugin;
 
 @end
