@@ -25,7 +25,6 @@
 //  SOFTWARE.
 
 #import "CommonController.h"
-#import "SymbolicationPlugin.h"
 
 @interface CommonController ()
 
@@ -69,7 +68,7 @@
 }
 
 - (NSString *)getCurrentDirectoryForTask:(NSTask *)task {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.mahesh.SymbolicationPlugin"];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:kSymbolicationPluginBundleIdentifier];
     return bundle.bundlePath;
 }
 

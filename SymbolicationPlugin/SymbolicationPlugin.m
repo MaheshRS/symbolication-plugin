@@ -67,9 +67,8 @@
     }
 }
 
-- (void)symbolicateMenuAction
-{
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:kBundleIdentifier];
+- (void)symbolicateMenuAction {
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:kSymbolicationPluginBundleIdentifier];
     if([bundle pathForResource:@"RootController" ofType:@"nib"] == nil) {
         self.rootController = nil;
         self.mainWindowController = nil;

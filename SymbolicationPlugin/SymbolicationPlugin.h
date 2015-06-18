@@ -31,7 +31,7 @@
 @class SymbolicationPlugin;
 
 static SymbolicationPlugin *sharedPlugin;
-NSString * const kBundleIdentifier = @"com.mahesh.SymbolicationPlugin";
+static NSString *kSymbolicationPluginBundleIdentifier = @"com.mahesh.SymbolicationPlugin";
 
 @interface SymbolicationPlugin : NSObject
 

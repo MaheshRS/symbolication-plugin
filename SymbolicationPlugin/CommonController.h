@@ -25,6 +25,7 @@
 //  SOFTWARE.
 
 #import <Cocoa/Cocoa.h>
+#import "SymbolicationPlugin.h"
 
 @interface CommonController : NSViewController
 

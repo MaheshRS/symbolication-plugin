@@ -224,7 +224,7 @@
 }
 
 - (NSString *)getLaunchPathForTask:(NSTask *)task {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.mahesh.SymbolicationPlugin"];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:kSymbolicationPluginBundleIdentifier];
     NSString *resymbolicateFilePath = [bundle pathForResource:@"resymbolicate" ofType:@""];
     return resymbolicateFilePath;
 }
